@@ -6,7 +6,7 @@ import { Log } from '../../types/Log';
 
 interface LogFormProps {
   initialData?: Log;
-  onSubmit: (data: Omit<Log, 'id'> | Log) => void;
+  onSubmit: (data: Omit<Log, 'id'> | Log) => void | Promise<void>;
   isEdit?: boolean;
 }
 

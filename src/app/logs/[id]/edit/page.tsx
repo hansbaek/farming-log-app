@@ -40,7 +40,13 @@ export default function EditLogPage({ params }: { params: Promise<{ id: string }
     fetchLog();
   }, [id, router]);
 
-  const handleSubmit = async (data: Log) => {
+  const handleSubmit = async (data: Omit<Log, 'id'> | Log) => {
+    if (!('id' in data)) {
+      console.error('Error: Log ID is missing for edit operation.');
+      alert('일지 수정에 필요한 ID가 없습니다.');
+      return;
+    }
+
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/logs/${data.id}`, {
         method: 'PUT',
