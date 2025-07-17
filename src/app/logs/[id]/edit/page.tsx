@@ -25,7 +25,7 @@ export default function EditLogPage({ params }: { params: Promise<{ id: string }
         }
         const data: Log = await res.json();
         setLog(data);
-      } catch (err: Error) {
+      } catch (err: unknown) {
         setError(err.message);
         console.error('Error fetching log for edit:', err);
       } finally {
